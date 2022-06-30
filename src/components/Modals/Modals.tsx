@@ -108,7 +108,7 @@ function Modals({
       method: "DELETE",
       headers: new Headers({
         "Content-type": "application/json",
-      })
+      }),
     });
 
     swal({
@@ -119,7 +119,7 @@ function Modals({
 
     onChanges(response);
     closeModal();
-  }
+  };
 
   function submitFunction(event: any) {
     event.preventDefault();
@@ -131,7 +131,6 @@ function Modals({
     }
   }
 
-  
   function deleteModalOpen() {
     swal({
       title: "Apagar Personagem?",
@@ -175,19 +174,19 @@ function Modals({
         <form onSubmit={submitFunction}>
           <input
             type="text"
-            name="image"
-            id="image"
-            placeholder="Imagem do Personagem"
-            onChange={handleChangeValues}
-            defaultValue={character.image}
-          />
-          <input
-            type="text"
             name="name"
             id="name"
             placeholder="Nome do Personagem"
             onChange={handleChangeValues}
             defaultValue={character.name}
+          />
+          <input
+            type="text"
+            name="image"
+            id="image"
+            placeholder="Imagem do Personagem"
+            onChange={handleChangeValues}
+            defaultValue={character.image}
           />
           <input
             type="text"
