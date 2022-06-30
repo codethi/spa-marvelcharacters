@@ -10,7 +10,7 @@ function App() {
   const updateCharacters = (refreshChar: number) => {};
 
   const getAllCharacters = async () => {
-    const resp = await fetch("http://localhost:5000/characters", {
+    const resp = await fetch("https://api-marvelcharacters.herokuapp.com/characters", {
       method: "GET",
       headers: {
         contentType: "application/json",
