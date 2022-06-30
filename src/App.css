@@ -1,4 +1,4 @@
-.list-cards{
+.list-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -13,7 +13,7 @@
     margin-bottom: 5rem;
 }
 
-.overley-react-modal{
+.overley-react-modal {
     background-color: #00000090;
     position: fixed;
     top: 0;
@@ -27,7 +27,7 @@
     align-items: center;
 }
 
-.content-react-modal{
+.content-react-modal {
     width: 100%;
     max-width: 300px;
     background-color: #ffffff;
@@ -36,7 +36,7 @@
     border-radius: 0.3rem;
 }
 
-.close-modal-button{
+.close-modal-button {
     background-color: transparent;
     color: #000000;
     font-size: 1.6rem;
@@ -50,6 +50,12 @@
     transition: all .2s ease-in-out;
 }
 
-.close-modal-button:hover{
+.close-modal-button:hover {
     color: #E51B22;
+}
+
+@media (max-width: 1200px) {
+    .list-cards {
+        width: 70%;
+    }
 }
