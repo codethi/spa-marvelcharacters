@@ -40,10 +40,10 @@ function Modals({
     identity: "",
   });
 
-  const baseURL = "http://localhost:5000/characters";
+  const baseURL = "https://api-marvelcharacters.onrender.com/characters";
 
   const getCharacterById = async () => {
-    const resp = await fetch(`http://localhost:5000/characters/${id}`, {
+    const resp = await fetch(`${baseURL}/${id}`, {
       method: "GET",
       headers: {
         contentType: "application/json",
