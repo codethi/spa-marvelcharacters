@@ -21,6 +21,7 @@ header section{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    flex-wrap: wrap;
 }
 
 header section div{
