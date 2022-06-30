@@ -2,7 +2,7 @@ import "./Modals.css";
 
 import Modal from "react-modal";
 import { BiX } from "react-icons/bi";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import swal from "sweetalert";
 
 Modal.setAppElement("#root");
@@ -17,6 +17,13 @@ interface modalsProps {
   id?: number;
 }
 
+interface characterObj {
+  identity: string;
+  image: string;
+  name: string;
+  reality: string;
+}
+
 function Modals({
   isOpen,
   closeModal,
@@ -26,7 +33,12 @@ function Modals({
   btnName,
   id,
 }: modalsProps) {
-  const [values, setValues] = useState();
+  const [values, setValues] = useState({
+    image: "",
+    name: "",
+    reality: "",
+    identity: "",
+  });
   const [formDetails, setFormDetails] = useState({
     id,
     title,
@@ -50,12 +62,11 @@ function Modals({
       },
     });
     const data = await resp.json();
-
     setCharacter(data);
   };
 
-  const handleChangeValues = (event: any) => {
-    setValues((prevValue: any) => ({
+  const handleChangeValues = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValues((prevValue: characterObj) => ({
       ...prevValue,
       [event.target.name]: event.target.value,
     }));
@@ -121,7 +132,7 @@ function Modals({
     closeModal();
   };
 
-  function submitFunction(event: any) {
+  function submitFunction(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     switch (type) {
       case "createCharacter":
@@ -150,7 +161,6 @@ function Modals({
       type: type,
       btnName: btnName,
     });
-
     id ? getCharacterById() : "";
   }, [isOpen]);
 

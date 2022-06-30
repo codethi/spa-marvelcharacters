@@ -65,7 +65,7 @@ header h1{
 
 @media (max-width: 1200px) {
     header section{
-        justify-content: center;
+        justify-content: space-around;
     }
 
     header section button{
@@ -75,6 +75,7 @@ header h1{
     .header-logo{
         padding: 1rem;
         max-width: 100%;
+        z-index: 0;
     }
 
     header h1{
