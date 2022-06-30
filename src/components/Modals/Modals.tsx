@@ -40,7 +40,7 @@ function Modals({
     identity: "",
   });
 
-  const baseURL = "https://api-marvelcharacters.herokuapp.com//characters";
+  const baseURL = "https://api-marvelcharacters.herokuapp.com/characters";
 
   const getCharacterById = async () => {
     const resp = await fetch(`${baseURL}/${id}`, {
