@@ -3,6 +3,8 @@ import logo from "../../images/logo-marvel.png";
 import banner from "../../images/banner.jpg";
 import Modals from "../Modals/Modals";
 import { useState } from "react";
+import { RiLogoutCircleLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 interface headerProps {
   updateCharacters: (arg: boolean) => void;
@@ -10,6 +12,7 @@ interface headerProps {
 
 function Header({ updateCharacters }: headerProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  let navigate = useNavigate();
 
   function openModal() {
     setIsModalOpen(true);
@@ -23,8 +26,14 @@ function Header({ updateCharacters }: headerProps) {
     updateCharacters(true);
   }
 
+  function logout() {
+    localStorage.removeItem("jwt");
+    navigate("/login");
+  }
+
   return (
     <header>
+      <RiLogoutCircleLine className="header-logout" onClick={logout} />
       <img className="header-background" src={banner} alt="" />
       <section>
         <div>
