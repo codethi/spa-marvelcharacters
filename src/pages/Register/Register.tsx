@@ -2,6 +2,7 @@ import "./Register.css";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 interface userObj {
   avatar: string;
@@ -44,9 +45,19 @@ function Register() {
 
     if (jwt) {
       localStorage.setItem("jwt", jwt);
-      navigate("/login");
+      swal({
+        title: "Usuário cadastrado com sucesso! Seja bem vindo.",
+        icon: "success",
+        timer: 7000,
+      });
+      navigate("/");
     } else {
-      alert(result.message);
+      swal({
+        title: "Erro",
+        text: `${result.message}`,
+        icon: "error",
+        timer: 7000,
+      });
     }
   };
 
