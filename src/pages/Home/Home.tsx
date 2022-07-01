@@ -15,7 +15,7 @@ interface Characters {
   image: string;
   name: string;
   reality: string;
-  id: number;
+  id: string;
   userName: string;
   avatar: string;
 }

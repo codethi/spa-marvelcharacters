@@ -41,6 +41,7 @@ function Header({ updateCharacters }: headerProps) {
         type="createCharacter"
         title="Criar Personagem"
         btnName="Salvar"
+        id=""
       />
     </header>
   );

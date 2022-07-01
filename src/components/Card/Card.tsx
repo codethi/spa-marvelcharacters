@@ -9,7 +9,7 @@ interface cardProps {
     image: string;
     reality: string;
     identity: string;
-    id: number;
+    id: string;
     userName:string;
     avatar: string;
   };
