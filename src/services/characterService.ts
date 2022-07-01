@@ -1,8 +1,6 @@
 import api from "./api";
 import swal from "sweetalert";
 
-const jwt = localStorage.getItem("jwt");
-
 const findAllService = {
   allCharacters: () =>
     api

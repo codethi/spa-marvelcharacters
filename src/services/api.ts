@@ -2,7 +2,7 @@ import axios from "axios";
 import swal from "sweetalert";
 
 const api = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: "https://api-marvelcharacter.herokuapp.com",
 });
 
 api.interceptors.request.use((config: any) => {
