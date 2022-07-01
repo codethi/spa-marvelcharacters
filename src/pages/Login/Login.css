@@ -1,0 +1,44 @@
+.login-container {
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url("../../images/banner.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.login-card {
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 1rem;
+    width: 400px;
+    height: auto;
+}
+
+.login-card h2{
+    text-align: center;
+    font-size: 2rem;
+    margin: 0;
+    padding-bottom: 2rem;
+}
+
+.login-card p{
+    text-align: center;
+    padding-top: 2rem;
+    margin: 0;
+}
+
+.link-register{
+    text-decoration: none;
+    color: #E51B22;
+    font-weight: bold;
+    transition: all .3s ease-in-out;
+}
+
+.link-register:hover{
+    color:#ab1a1e;
+}

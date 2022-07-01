@@ -37,7 +37,7 @@ form button {
     cursor: pointer;
     font-weight: bold;
     border-radius: .2rem;
-
+    text-transform: uppercase;
     transition: all .3s ease-in-out;
 }
 

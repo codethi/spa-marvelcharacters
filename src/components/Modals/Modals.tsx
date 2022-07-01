@@ -83,7 +83,6 @@ function Modals({
 
     const data = await response.json();
 
-    console.log(data);
     if (data) {
       swal({
         text: "Personagem criado com sucesso!",
