@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {loginService} from "../../services/authService"
+import { loginService } from "../../services/authService";
 
 interface userLoginObj {
   email: string;
@@ -16,7 +16,7 @@ function Login() {
     email: "",
     password: "",
   });
-  
+
   let navigate = useNavigate();
 
   const handleChangeValues = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +27,7 @@ function Login() {
   };
   const loginUser = async (event: any) => {
     event.preventDefault();
-    const response = await loginService.loginValues(values)
+    const response = await loginService.loginValues(values);
     const jwt = response.data.token;
 
     if (jwt) {
@@ -38,13 +38,6 @@ function Login() {
         timer: 7000,
       });
       navigate("/");
-    } else {
-      swal({
-        title: "Erro",
-        text: `${response.data.message}`,
-        icon: "error",
-        timer: 7000,
-      });
     }
   };
 

@@ -2,6 +2,7 @@ import "./Card.css";
 
 import { useState } from "react";
 import Modals from "../Modals/Modals";
+import swal from "sweetalert";
 
 interface cardProps {
   character: {
@@ -10,17 +11,33 @@ interface cardProps {
     reality: string;
     identity: string;
     id: string;
-    userName:string;
+    userName: string;
     avatar: string;
+    userId: string;
   };
   updateCharacters: (arg: boolean) => void;
+  userLogged: {
+    avatar: string;
+    email: string;
+    name: string;
+    _id: string;
+  };
 }
 
-function Card({ character, updateCharacters }: cardProps) {
+function Card({ character, updateCharacters, userLogged }: cardProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   function openModal() {
-    setIsModalOpen(true);
+    if (userLogged._id === character.userId) {
+      setIsModalOpen(true);
+    } else {
+      swal({
+        title: "Erro",
+        text: "Você só pode alterar o personagem que você criou.",
+        icon: "error",
+        timer: 7000,
+      });
+    }
   }
 
   function closeModal() {
@@ -34,12 +51,12 @@ function Card({ character, updateCharacters }: cardProps) {
   return (
     <>
       <div className="card" onClick={openModal}>
-        <img src={character.image} alt="" className="character-image"/>
+        <img src={character.image} alt="" className="character-image" />
         <div>
           <h2>{character.name}</h2>
           <p>{character.reality}</p>
           <p>{character.identity}</p>
-          
+
           <span className="user-card">by: {character.userName}</span>
         </div>
       </div>

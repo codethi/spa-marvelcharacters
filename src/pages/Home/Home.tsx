@@ -10,6 +10,8 @@ import {
   findMoreService,
 } from "../../services/characterService";
 
+import { userLoggedService } from "../../services/authService";
+
 interface Characters {
   identity: string;
   image: string;
@@ -18,12 +20,26 @@ interface Characters {
   id: string;
   userName: string;
   avatar: string;
+  userId: string;
+}
+
+interface User {
+  avatar: string;
+  email: string;
+  name: string;
+  _id: string;
 }
 
 function Home() {
   const [characters, setCharacters] = useState<Characters[]>([]);
   const [refreshCharacters, setRefreshCharacters] = useState(false);
   const [nextUrl, setNextUrl] = useState<string>("");
+  const [userLogged, setUserLogged] = useState<User>({
+    avatar: "",
+    email: "",
+    name: "",
+    _id: "",
+  });
   const jwt = localStorage.getItem("jwt");
   let navigate = useNavigate();
 
@@ -81,8 +97,14 @@ function Home() {
     }
   }
 
+  async function getUserLogged() {
+    const response = await userLoggedService.userLogged();
+    setUserLogged(response.data);
+  }
+
   useEffect(() => {
     getAllCharacters();
+    getUserLogged();
   }, [refreshCharacters]);
 
   return (
@@ -95,6 +117,7 @@ function Home() {
               character={character}
               updateCharacters={updateCharacters}
               key={index}
+              userLogged={userLogged}
             />
           ))}
         </div>

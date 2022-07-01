@@ -142,7 +142,7 @@ function Modals({
       type: type,
       btnName: btnName,
     });
-    isOpen ? getCharacterById() : "";
+    type === "editCharacter" && isOpen ? getCharacterById() : "";
   }, [isOpen]);
 
   return (
