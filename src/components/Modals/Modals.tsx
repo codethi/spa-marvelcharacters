@@ -68,7 +68,6 @@ function Modals({
 
   const createCharacter = async () => {
     const response = await createService.createCharacter(character);
-    const data = response.data;
 
     if (response.status === 200) {
       swal({
@@ -78,12 +77,6 @@ function Modals({
       });
       onChanges(response);
       closeModal();
-    } else {
-      swal({
-        text: data.message,
-        icon: "success",
-        timer: 7000,
-      });
     }
   };
 
