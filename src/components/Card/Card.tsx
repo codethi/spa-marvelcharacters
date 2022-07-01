@@ -10,8 +10,10 @@ interface cardProps {
     reality: string;
     identity: string;
     id: number;
-  },
-  updateCharacters: (arg: number) => void;
+    userName:string;
+    avatar: string;
+  };
+  updateCharacters: (arg: boolean) => void;
 }
 
 function Card({ character, updateCharacters }: cardProps) {
@@ -26,17 +28,19 @@ function Card({ character, updateCharacters }: cardProps) {
   }
 
   function onEdit() {
-    updateCharacters(1);
+    updateCharacters(true);
   }
 
   return (
     <>
       <div className="card" onClick={openModal}>
-        <img src={character.image} alt="" />
+        <img src={character.image} alt="" className="character-image"/>
         <div>
           <h2>{character.name}</h2>
           <p>{character.reality}</p>
-          <span>{character.identity}</span>
+          <p>{character.identity}</p>
+          
+          <span className="user-card">by: {character.userName}</span>
         </div>
       </div>
 

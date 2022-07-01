@@ -1,18 +1,3 @@
-.list-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-
-    width: 80%;
-    margin: 0 auto;
-
-    background-color: #fff;
-    padding: 3rem;
-    border-radius: 1rem;
-    margin-bottom: 5rem;
-}
-
 .overley-react-modal {
     background-color: #00000090;
     position: fixed;
@@ -54,8 +39,3 @@
     color: #E51B22;
 }
 
-@media (max-width: 1200px) {
-    .list-cards {
-        width: 70%;
-    }
-}

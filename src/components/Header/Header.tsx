@@ -5,7 +5,7 @@ import Modals from "../Modals/Modals";
 import { useState } from "react";
 
 interface headerProps {
-  updateCharacters: (arg: number) => void;
+  updateCharacters: (arg: boolean) => void;
 }
 
 function Header({ updateCharacters }: headerProps) {
@@ -20,7 +20,7 @@ function Header({ updateCharacters }: headerProps) {
   }
 
   function onCreate() {
-    updateCharacters(1);
+    updateCharacters(true);
   }
 
   return (

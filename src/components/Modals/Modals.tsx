@@ -4,6 +4,12 @@ import Modal from "react-modal";
 import { BiX } from "react-icons/bi";
 import React, { useState, useEffect } from "react";
 import swal from "sweetalert";
+import {
+  createService,
+  findByIdService,
+  updateService,
+  deleteService,
+} from "../../services/characterService";
 
 Modal.setAppElement("#root");
 
@@ -14,7 +20,7 @@ interface modalsProps {
   type: string;
   title: string;
   btnName: string;
-  id?: number;
+  id: string;
 }
 
 interface characterObj {
@@ -33,12 +39,6 @@ function Modals({
   btnName,
   id,
 }: modalsProps) {
-  const [values, setValues] = useState({
-    image: "",
-    name: "",
-    reality: "",
-    identity: "",
-  });
   const [formDetails, setFormDetails] = useState({
     id,
     title,
@@ -52,38 +52,25 @@ function Modals({
     identity: "",
   });
 
-  const baseURL = "https://api-marvelcharacters.herokuapp.com/characters";
+  const baseURL = "http://localhost:3001/character";
 
   const getCharacterById = async () => {
-    const resp = await fetch(`${baseURL}/${id}`, {
-      method: "GET",
-      headers: {
-        contentType: "application/json",
-      },
-    });
-    const data = await resp.json();
-    setCharacter(data);
+    const response = await findByIdService.findByIdCharacter(id);
+    setCharacter(response.data);
   };
 
   const handleChangeValues = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues((prevValue: characterObj) => ({
+    setCharacter((prevValue: characterObj) => ({
       ...prevValue,
       [event.target.name]: event.target.value,
     }));
   };
 
   const createCharacter = async () => {
-    const response = await fetch(`${baseURL}`, {
-      method: "POST",
-      headers: new Headers({
-        "Content-type": "application/json",
-      }),
-      body: JSON.stringify(values),
-    });
+    const response = await createService.createCharacter(character);
+    const data = response.data;
 
-    const data = await response.json();
-
-    if (data) {
+    if (response.status === 200) {
       swal({
         text: "Personagem criado com sucesso!",
         icon: "success",
@@ -91,17 +78,17 @@ function Modals({
       });
       onChanges(response);
       closeModal();
+    } else {
+      swal({
+        text: data.message,
+        icon: "success",
+        timer: 7000,
+      });
     }
   };
 
   const editCharacter = async () => {
-    const response = await fetch(`${baseURL}/${formDetails.id}`, {
-      method: "PATCH",
-      headers: new Headers({
-        "Content-type": "application/json",
-      }),
-      body: JSON.stringify(values),
-    });
+    const response = await updateService.updateCharacter(character, id);
 
     swal({
       text: "Personagem atualizado com sucesso!",
@@ -114,12 +101,7 @@ function Modals({
   };
 
   const deleteCharacter = async () => {
-    const response = await fetch(`${baseURL}/${formDetails.id}`, {
-      method: "DELETE",
-      headers: new Headers({
-        "Content-type": "application/json",
-      }),
-    });
+    const response = await deleteService.deleteCharacter(id);
 
     swal({
       text: "Personagem apagado com sucesso!",
@@ -160,7 +142,7 @@ function Modals({
       type: type,
       btnName: btnName,
     });
-    id ? getCharacterById() : "";
+    isOpen ? getCharacterById() : "";
   }, [isOpen]);
 
   return (

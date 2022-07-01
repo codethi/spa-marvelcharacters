@@ -1,8 +1,9 @@
 import "./Register.css";
 
-import { useState } from "react";
+import { useState, SyntheticEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { registerService } from "../../services/authService";
 
 interface userObj {
   avatar: string;
@@ -19,7 +20,6 @@ function Register() {
     password: "",
   });
 
-  const baseURL = "http://localhost:3001";
   let navigate = useNavigate();
 
   const handleChangeValues = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,19 +29,11 @@ function Register() {
     }));
   };
 
-  const registerUser = async (event: any) => {
+  const registerUser = async (event: SyntheticEvent) => {
     event.preventDefault();
 
-    const response = await fetch(`${baseURL}/user/create`, {
-      method: "POST",
-      headers: new Headers({
-        "Content-type": "application/json",
-      }),
-      body: JSON.stringify(values),
-    });
-    const result = await response.json();
-
-    const jwt = result.token;
+    const response = await registerService.registerValues(values);
+    const jwt = response.data.token;
 
     if (jwt) {
       localStorage.setItem("jwt", jwt);
@@ -54,7 +46,7 @@ function Register() {
     } else {
       swal({
         title: "Erro",
-        text: `${result.message}`,
+        text: `${response.data.message}`,
         icon: "error",
         timer: 7000,
       });
