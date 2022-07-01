@@ -136,6 +136,10 @@ function Modals({
       btnName: btnName,
     });
     type === "editCharacter" && isOpen ? getCharacterById() : "";
+
+    type === "createCharacter"
+      ? setCharacter({ image: "", name: "", reality: "", identity: "" })
+      : "";
   }, [isOpen]);
 
   return (
